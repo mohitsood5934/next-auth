@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
     Navbar,
@@ -5,35 +6,26 @@ import {
     NavbarContent,
     NavbarItem,
     Input,
-    Button,
-    Avatar
 } from "@nextui-org/react";
-import { auth } from '../auth';
+import HeaderAuth from "./header-auth";
 
-export default async function Header() {
-    const session = await auth();
+export default function Header() {
 
     return (
         <Navbar className="shadow mb-6">
             <NavbarBrand>
-                <Link href="/" className="font-bold">Discuss</Link>
+                <Link href="/" className="font-bold">
+                    Discuss
+                </Link>
             </NavbarBrand>
             <NavbarContent justify="center">
                 <NavbarItem>
                     <Input />
                 </NavbarItem>
             </NavbarContent>
-
             <NavbarContent justify="end">
-                <NavbarItem>
-                    {
-                        session?.user ? <div>Signed In</div> :
-                            <div>
-                                Signed Out
-                            </div>
-                    }
-                </NavbarItem>
+                <HeaderAuth />
             </NavbarContent>
         </Navbar>
-    )
+    );
 }

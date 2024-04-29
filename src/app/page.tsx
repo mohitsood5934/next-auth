@@ -1,21 +1,19 @@
-import * as actions from "../actions";
-import { auth } from '../auth';
-import Profile from "../components/profile";
+import TopicCreateForm from "../components/topics/topic-create-form";
+import TopicList from "../components/topics/topic-list";
+import { Divider } from '../module';
 
 export default async function Home() {
-  const session = await auth();
   return (
-    <div>
-      <form action={actions.signIn}>
-        <button>Sign In</button>
-      </form>
-      <form action={actions.signOut}>
-        <button>Sign Out</button>
-      </form>
-      {
-        session?.user ? <div>{JSON.stringify(session?.user)}</div> : <div>Signed Out</div>
-      }
-      <Profile />
+    <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="col-span-3">
+        <h1 className="text-xl m-2">Top Posts</h1>
+      </div>
+      <div className="border shadow p-3">
+        <TopicCreateForm />
+        <Divider className="my-2" />
+        <h3 className="text-lg">Topics</h3>
+        <TopicList />
+      </div>
     </div>
   );
 }
