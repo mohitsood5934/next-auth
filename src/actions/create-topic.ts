@@ -63,7 +63,7 @@ export async function createTopic(formState: CreateTopicFormState, formData: For
         } else {
             return {
                 errors: {
-                    _form: ['Something went wrong']
+                    _form: ['Something went wrong, failed to create post']
                 },
             }
         }
